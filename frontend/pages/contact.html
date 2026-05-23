@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Akshat Jain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<script src="/js/main.js"></script>
+<div id="scroll-progress"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="logo">Akshat_Jain</a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Work</a><a href="/pages/gallery.html" class="nav-link">Projects</a>
+      <a href="/pages/about.html" class="nav-link">About</a><a href="/pages/contact.html" class="nav-link active">Contact</a>
+    </nav>
+    <a href="/pages/contact.html" class="nav-cta">Hire Me</a>
+    <button class="mobile-menu-btn material-symbols-outlined">menu</button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <a href="/" class="nav-link">Work</a><a href="/pages/gallery.html" class="nav-link">Projects</a>
+  <a href="/pages/about.html" class="nav-link">About</a><a href="/pages/contact.html" class="nav-link">Contact</a>
+</nav>
+
+<main>
+  <!-- Header -->
+  <section style="padding:80px 0 60px;border-bottom:1px solid var(--outline);">
+    <div class="container">
+      <div class="label reveal" style="margin-bottom:24px;">Get In Touch</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px;">
+        <h1 class="headline-xl reveal reveal-delay-1">Let's build something<br/><em>great</em> together.</h1>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;" class="reveal reveal-delay-2">
+          <div class="availability-badge"><span class="status-dot"></span><span style="color:var(--primary);">Open to Opportunities</span></div>
+          <div class="availability-badge">
+            <span class="material-symbols-outlined" style="font-size:16px;color:var(--on-surface-dim);">schedule</span>
+            <span style="color:var(--on-surface-dim);" id="live-clock">IST (UTC+5:30)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form + Info -->
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;">
+
+        <!-- FORM -->
+        <div>
+          <div class="label reveal" style="margin-bottom:32px;">Send a Message</div>
+          <form id="contact-form" style="display:flex;flex-direction:column;gap:28px;" onsubmit="submitContact(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+              <div class="form-group reveal">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" placeholder="Jane Doe" class="form-input" required/>
+              </div>
+              <div class="form-group reveal reveal-delay-1">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" placeholder="hello@example.com" class="form-input" required/>
+              </div>
+            </div>
+            <div class="form-group reveal reveal-delay-2">
+              <label class="form-label">Project / Opportunity Type</label>
+              <select name="projectType" class="form-input">
+                <option value="">Select type...</option>
+                <option>Full-Stack Web App</option>
+                <option>API Development</option>
+                <option>Real-Time System</option>
+                <option>AI / ML Integration</option>
+                <option>Internship / Job</option>
+                <option>Freelance Project</option>
+                <option>Collaboration</option>
+                <option>Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group reveal reveal-delay-4">
+              <label class="form-label">Tell Me About Your Project</label>
+              <textarea name="message" placeholder="What are you building? What problem needs solving?" class="form-input" required style="min-height:140px;"></textarea>
+            </div>
+            <div class="reveal">
+              <button type="submit" id="contact-submit" class="btn-primary" style="width:100%;justify-content:center;">
+                <span id="submit-text">Send Message</span>
+                <span class="material-symbols-outlined" style="font-size:18px;" id="submit-icon">send</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- RIGHT: Contact Info -->
+        <div>
+          <div class="label reveal" style="margin-bottom:32px;">Direct Contact</div>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:48px;">
+            <a href="mailto:akshatjain9804@gmail.com" class="reveal" style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--outline);padding:20px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--outline)'">
+              <div><div class="mono" style="color:var(--on-surface-dim);margin-bottom:4px;">Email</div><div style="font-size:15px;font-weight:500;">akshatjain9804@gmail.com</div></div>
+              <span class="material-symbols-outlined" style="color:var(--primary);">north_east</span>
+            </a>
+            <a href="tel:+918959491967" class="reveal reveal-delay-1" style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--outline);padding:20px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--outline)'">
+              <div><div class="mono" style="color:var(--on-surface-dim);margin-bottom:4px;">Phone</div><div style="font-size:15px;font-weight:500;">+91-8959491967</div></div>
+              <span class="material-symbols-outlined" style="color:var(--primary);">call</span>
+            </a>
+            <a href="https://github.com/Akshatj0707" target="_blank" class="reveal reveal-delay-2" style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--outline);padding:20px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--outline)'">
+              <div><div class="mono" style="color:var(--on-surface-dim);margin-bottom:4px;">GitHub</div><div style="font-size:15px;font-weight:500;">github.com/Akshatj0707</div></div>
+              <span class="material-symbols-outlined" style="color:var(--primary);">north_east</span>
+            </a>
+            <a href="https://linkedin.com/in/akshat-jain" target="_blank" class="reveal reveal-delay-3" style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--outline);padding:20px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--outline)'">
+              <div><div class="mono" style="color:var(--on-surface-dim);margin-bottom:4px;">LinkedIn</div><div style="font-size:15px;font-weight:500;">linkedin.com/in/akshat-jain</div></div>
+              <span class="material-symbols-outlined" style="color:var(--primary);">north_east</span>
+            </a>
+          </div>
+
+          <!-- What I offer -->
+          <div class="label reveal" style="margin-bottom:20px;">I Can Help With</div>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="padding:20px 0;border-bottom:1px solid var(--outline);display:flex;gap:16px;" class="reveal">
+              <span class="material-symbols-outlined" style="color:var(--primary);font-size:20px;flex-shrink:0;">check_circle</span>
+              <div><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Full-Stack Web Applications</div><div style="font-size:13px;color:var(--on-surface-dim);">React.js, Next.js, Node.js, MongoDB, REST APIs</div></div>
+            </div>
+            <div style="padding:20px 0;border-bottom:1px solid var(--outline);display:flex;gap:16px;" class="reveal reveal-delay-1">
+              <span class="material-symbols-outlined" style="color:var(--primary);font-size:20px;flex-shrink:0;">check_circle</span>
+              <div><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Real-Time Systems & APIs</div><div style="font-size:13px;color:var(--on-surface-dim);">Socket.io, JWT auth, RBAC, GraphQL</div></div>
+            </div>
+            <div style="padding:20px 0;border-bottom:1px solid var(--outline);display:flex;gap:16px;" class="reveal reveal-delay-2">
+              <span class="material-symbols-outlined" style="color:var(--primary);font-size:20px;flex-shrink:0;">check_circle</span>
+              <div><div style="font-weight:600;font-size:14px;margin-bottom:3px;">AI / ML Integration</div><div style="font-size:13px;color:var(--on-surface-dim);">Generative AI, LLMs, Computer Vision, OpenCV</div></div>
+            </div>
+            <div style="padding:20px 0;display:flex;gap:16px;" class="reveal reveal-delay-3">
+              <span class="material-symbols-outlined" style="color:var(--primary);font-size:20px;flex-shrink:0;">check_circle</span>
+              <div><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Internships & Collaborations</div><div style="font-size:13px;color:var(--on-surface-dim);">Open to exciting opportunities and team projects</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+</main>
+
+
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="logo" style="margin-bottom:16px;">Akshat_Jain</div></div>
+    <div><div class="footer-heading">Navigation</div><div class="footer-links"><a href="/" class="footer-link">Home</a><a href="/pages/gallery.html" class="footer-link">Projects</a><a href="/pages/about.html" class="footer-link">About</a><a href="/pages/contact.html" class="footer-link">Contact</a></div></div>
+    <div><div class="footer-heading">Connect</div><div class="footer-links"><a href="https://github.com/Akshatj0707" target="_blank" class="footer-link">GitHub</a><a href="https://linkedin.com/in/akshat-jain" target="_blank" class="footer-link">LinkedIn</a><a href="mailto:akshatjain9804@gmail.com" class="footer-link">Email</a></div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 AKSHAT JAIN</span><span class="mono" style="color:var(--primary);">INDORE, MP · INDIA</span></div>
+</footer>
+
+<script>
+// Live IST clock
+function updateClock() {
+  const el = document.getElementById("live-clock");
+  if (el) el.textContent = new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Kolkata"}) + " IST";
+}
+updateClock(); setInterval(updateClock, 30000);
+
+async function submitContact(e) {
+  e.preventDefault();
+  const btn = document.getElementById("contact-submit");
+  const text = document.getElementById("submit-text");
+  const icon = document.getElementById("submit-icon");
+  btn.disabled=true; text.textContent="Sending..."; icon.textContent="hourglass_empty";
+  const fd = new FormData(e.target);
+  try {
+    await api.post("/contact", { name:fd.get("name"), email:fd.get("email"), projectType:fd.get("projectType"), message:fd.get("message") });
+    text.textContent="Sent!"; icon.textContent="check_circle"; btn.style.background="var(--primary)";
+    showToast("Message sent! Akshat will reply within 24 hours.", "success");
+    e.target.reset();
+    setTimeout(() => { text.textContent="Send Message"; icon.textContent="send"; btn.style.background=""; btn.disabled=false; }, 4000);
+  } catch(err) {
+    showToast("Failed to send. Try emailing directly.", "error");
+    text.textContent="Send Message"; icon.textContent="send"; btn.disabled=false;
+  }
+}
+
+
+</script>
+</body>
+</html>

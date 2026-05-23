@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Creative Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <style>
+    .filter-btn { font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;border:1px solid var(--outline);color:var(--on-surface-dim);cursor:pointer;transition:all .2s; }
+    .filter-btn:hover { border-color:var(--primary);color:var(--primary); }
+    .filter-btn.active { border-color:var(--primary);color:var(--bg);background:var(--primary); }
+    .masonry { columns:3;column-gap:16px; }
+    .masonry-item { break-inside:avoid;margin-bottom:16px;display:block; }
+    @media(max-width:1024px){.masonry{columns:2;}}
+    @media(max-width:640px){.masonry{columns:1;}}
+  </style>
+</head>
+<body>
+<script src="/js/main.js"></script>
+<div id="scroll-progress"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="logo">Akshat_Jain</a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Work</a>
+      <a href="/pages/gallery.html" class="nav-link active">Projects</a>
+      <a href="/pages/about.html" class="nav-link">About</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <a href="/pages/contact.html" class="nav-cta">Hire Me</a>
+    <button class="mobile-menu-btn material-symbols-outlined">menu</button>
+  </div>
+</header>
+<nav class="mobile-nav">
+  <a href="/" class="nav-link">Work</a><a href="/pages/gallery.html" class="nav-link">Projects</a>
+  <a href="/pages/about.html" class="nav-link">About</a><a href="/pages/contact.html" class="nav-link">Contact</a>
+</nav>
+
+<main>
+  <!-- Page Header -->
+  <section style="padding:80px 0 60px;border-bottom:1px solid var(--outline);">
+    <div class="container">
+      <div class="label reveal" style="margin-bottom:24px;">Projects</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;">
+        <h1 class="headline-xl reveal reveal-delay-1">Gallery of Work.</h1>
+        <p class="body-lg reveal reveal-delay-2" style="max-width:400px;">A curated selection of projects spanning brand identity, editorial design, web experiences, and motion graphics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section style="padding:32px 0;border-bottom:1px solid var(--outline);position:sticky;top:72px;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);z-index:10;">
+    <div class="container">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="mono" style="color:var(--on-surface-dim);margin-right:8px;">Filter:</span>
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Brand Identity">Branding</button>
+        <button class="filter-btn" data-filter="Editorial Design">Editorial</button>
+        <button class="filter-btn" data-filter="Interface Design">Interface</button>
+        <button class="filter-btn" data-filter="Motion Graphics">Motion</button>
+        <button class="filter-btn" data-filter="Still Life">Photography</button>
+        <span style="margin-left:auto;" class="mono" id="project-count" style="color:var(--on-surface-dim);">— projects</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section">
+    <div class="container">
+      <div id="gallery-grid" class="masonry">
+        <!-- Skeleton loaders -->
+        <div class="skeleton masonry-item" style="height:320px;"></div>
+        <div class="skeleton masonry-item" style="height:480px;"></div>
+        <div class="skeleton masonry-item" style="height:380px;"></div>
+        <div class="skeleton masonry-item" style="height:500px;"></div>
+        <div class="skeleton masonry-item" style="height:300px;"></div>
+        <div class="skeleton masonry-item" style="height:420px;"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="logo" style="margin-bottom:16px;">Akshat_Jain</div><p class="body-md" style="max-width:240px;margin-top:12px;">Crafting digital precision through editorial excellence. Indore, MP.</p></div>
+    <div><div class="footer-heading">Navigation</div><div class="footer-links"><a href="/" class="footer-link">Home</a><a href="/pages/gallery.html" class="footer-link">Projects</a><a href="/pages/about.html" class="footer-link">About</a><a href="/pages/contact.html" class="footer-link">Contact</a></div></div>
+    <div><div class="footer-heading">Connect</div><div class="footer-links"><a href="https://github.com/Akshatj0707" target="_blank" class="footer-link">GitHub</a><a href="https://linkedin.com/in/akshat-jain" target="_blank" class="footer-link">LinkedIn</a><a href="mailto:akshatjain9804@gmail.com" class="footer-link">Email</a></div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 AKSHAT JAIN</span><span class="mono" style="color:var(--primary);">INDORE, MP</span></div>
+</footer>
+
+<script>
+let allProjects = [];
+let currentFilter = 'all';
+
+async function loadGallery() {
+  try {
+    const data = await api.get('/projects?limit=50');
+    allProjects = data.data;
+    renderGallery(allProjects);
+  } catch(e) {
+    document.getElementById('gallery-grid').innerHTML = '<p style="color:var(--on-surface-dim);">Failed to load projects.</p>';
+  }
+}
+
+function renderGallery(projects) {
+  const grid = document.getElementById('gallery-grid');
+  const countEl = document.getElementById('project-count');
+  countEl.textContent = projects.length + ' projects';
+
+  const heights = [320,400,480,360,420,500,300,460];
+  grid.innerHTML = projects.map((p, i) => `
+    <a href="#" class="project-card masonry-item" style="height:${heights[i%heights.length]}px;" data-category="${p.category}">
+      <img src="${p.coverImage}" alt="${p.title}" loading="lazy" style="height:100%;"/>
+      <div class="project-card-overlay">
+        <div class="project-card-category">${p.category}</div>
+        <div class="project-card-title">${p.title}</div>
+        <div style="margin-top:8px;font-size:12px;color:var(--on-surface-dim);">${p.year}</div>
+      </div>
+    </a>
+  `).join('');
+
+  // Stagger animation
+  grid.querySelectorAll('.project-card').forEach((el,i) => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+    setTimeout(() => { el.style.transition = 'opacity .5s,transform .5s var(--ease-spring)'; el.style.opacity='1'; el.style.transform='none'; }, i*60);
+  });
+}
+
+// Filter logic
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    const filtered = currentFilter === 'all' ? allProjects : allProjects.filter(p => p.category === currentFilter);
+    renderGallery(filtered);
+  });
+});
+
+loadGallery();
+</script>
+</body>
+</html>

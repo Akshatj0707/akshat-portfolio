@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services — Creative Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+<script src="/js/main.js"></script>
+<div id="scroll-progress"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="logo">Akshat_Jain</a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Work</a><a href="/pages/gallery.html" class="nav-link">Projects</a>
+      <a href="/pages/about.html" class="nav-link">About</a><a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <a href="/pages/contact.html" class="nav-cta">Hire Me</a>
+    <button class="mobile-menu-btn material-symbols-outlined">menu</button>
+  </div>
+</header>
+<main>
+  <section style="padding:80px 0;border-bottom:1px solid var(--outline);">
+    <div class="container">
+      <div class="label reveal" style="margin-bottom:24px;">Services & Pricing</div>
+      <h1 class="headline-xl reveal reveal-delay-1" style="margin-bottom:24px;">Transparent Pricing.<br/>Exceptional Results.</h1>
+      <p class="body-lg reveal reveal-delay-2" style="max-width:540px;">Every service includes my full attention, iteration cycles, and final file handoff. Book directly online — secured by Stripe.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div id="services-full" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:900px;margin:0 auto;">
+        <div class="skeleton" style="height:280px;border-radius:8px;"></div>
+        <div class="skeleton" style="height:280px;border-radius:8px;"></div>
+        <div class="skeleton" style="height:280px;border-radius:8px;"></div>
+        <div class="skeleton" style="height:280px;border-radius:8px;"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><div class="logo">Akshat_Jain</div></div>
+    <div><div class="footer-heading">Navigation</div><div class="footer-links"><a href="/" class="footer-link">Home</a><a href="/pages/gallery.html" class="footer-link">Projects</a><a href="/pages/contact.html" class="footer-link">Contact</a></div></div>
+    <div><div class="footer-heading">Connect</div><div class="footer-links"><a href="https://github.com/Akshatj0707" target="_blank" class="footer-link">GitHub</a><a href="https://linkedin.com/in/akshat-jain" target="_blank" class="footer-link">LinkedIn</a></div></div>
+  </div>
+  <div class="footer-bottom"><span>© 2024 AKSHAT JAIN</span></div>
+</footer>
+<script>
+async function loadServices() {
+  const res = await fetch('/api/payment/services');
+  const data = await res.json();
+  if (!data.success) return;
+  document.getElementById('services-full').innerHTML = data.data.map(s => `
+    <div class="service-card">
+      <div class="service-price">${s.amountFormatted}</div>
+      <div class="service-name">${s.name}</div>
+      <div class="service-desc" style="margin-bottom:24px;">${s.description}</div>
+      <a href="/pages/contact.html#hire" class="btn-primary" style="width:100%;justify-content:center;display:inline-flex;">Book Now</a>
+    </div>
+  `).join('');
+}
+loadServices();
+</script>
+</body>
+</html>
