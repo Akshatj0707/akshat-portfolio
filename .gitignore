@@ -21,3 +21,4 @@ Thumbs.db
 dist/
 build/
 *.zip
+push_to_github.sh

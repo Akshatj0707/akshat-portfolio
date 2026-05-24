@@ -11,17 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use('/api/payment/webhook', express.raw({ type: 'application/json' }));
 
 // ── CORS ─────────────────────────────────────────────────────
-app.use(cors({
-  origin: function (origin, callback) {
-    const allowed = process.env.FRONTEND_URL
-      ? [process.env.FRONTEND_URL, 'http://localhost:5000', 'http://localhost:3000']
-      : true;
-    if (allowed === true || !origin) return callback(null, true);
-    if (allowed.includes(origin)) return callback(null, true);
-    callback(null, true); // allow all in production
-  },
-  credentials: true
-}));
+app.use(cors({ origin: true, credentials: true }));
 
 // ── Body parsers ──────────────────────────────────────────────
 app.use(express.json({ limit: '10mb' }));
@@ -57,21 +47,17 @@ app.get('*', (req, res) => {
 // ── Global error handler ──────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(err.status || 500).json({
-    success: false,
-    message: err.message || 'Internal Server Error'
-  });
+  res.status(err.status || 500).json({ success: false, message: err.message || 'Server Error' });
 });
 
-// ── Connect MongoDB ───────────────────────────────────────────
+// ── Connect MongoDB then start server ─────────────────────────
 const MONGO_URI = process.env.MONGODB_URI;
-
 if (!MONGO_URI) {
-  console.error('❌  MONGODB_URI is not set!');
+  console.error('❌  MONGODB_URI is not set in environment variables!');
   process.exit(1);
 }
 
-console.log('🔌  Connecting to MongoDB...');
+console.log('🔌  Connecting to MongoDB Atlas...');
 
 mongoose.connect(MONGO_URI, {
   serverSelectionTimeoutMS : 30000,
@@ -87,11 +73,11 @@ mongoose.connect(MONGO_URI, {
     console.log(`🌐  Frontend → http://localhost:${PORT}`);
     console.log(`🔌  API      → http://localhost:${PORT}/api`);
     console.log(`🔑  Admin    → http://localhost:${PORT}/admin.html`);
+    console.log(`💊  Health   → http://localhost:${PORT}/api/health`);
   });
 })
 .catch(err => {
   console.error('❌  MongoDB connection failed:', err.message);
-  console.error('    Check: 1) MONGODB_URI is correct  2) IP whitelisted  3) Password correct');
   process.exit(1);
 });
 
