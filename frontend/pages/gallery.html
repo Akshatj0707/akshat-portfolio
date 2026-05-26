@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects — Creative Studio</title>
+  <title>Projects — Akshat Jain | Full-Stack Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="/css/styles.css"/>
   <style>
-    .filter-btn { font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;border:1px solid var(--outline);color:var(--on-surface-dim);cursor:pointer;transition:all .2s; }
-    .filter-btn:hover { border-color:var(--primary);color:var(--primary); }
-    .filter-btn.active { border-color:var(--primary);color:var(--bg);background:var(--primary); }
-    .masonry { columns:3;column-gap:16px; }
-    .masonry-item { break-inside:avoid;margin-bottom:16px;display:block; }
-    @media(max-width:1024px){.masonry{columns:2;}}
-    @media(max-width:640px){.masonry{columns:1;}}
+    .filter-btn{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--outline);color:var(--on-surface-dim);background:transparent;cursor:pointer;transition:all .2s;font-family:var(--font-sans)}
+    .filter-btn:hover{border-color:var(--primary);color:var(--primary)}
+    .filter-btn.active{border-color:var(--primary);color:var(--bg);background:var(--primary)}
+    .masonry{columns:3;column-gap:16px}
+    .masonry-item{break-inside:avoid;margin-bottom:16px;display:block}
+    @media(max-width:1024px){.masonry{columns:2}}
+    @media(max-width:640px){.masonry{columns:1}}
+    .project-detail-card{background:var(--surface-low);border:1px solid var(--outline);border-radius:var(--radius-lg);padding:28px;margin-bottom:16px;transition:border-color .3s,transform .3s var(--ease-spring)}
+    .project-detail-card:hover{border-color:rgba(182,196,255,.4);transform:translateY(-2px)}
+    .tech-chip{font-size:9px;font-weight:600;letter-spacing:.08em;padding:3px 10px;border:1px solid var(--outline);border-radius:999px;color:var(--on-surface-dim)}
   </style>
 </head>
 <body>
@@ -38,29 +41,27 @@
 </nav>
 
 <main>
-  <!-- Page Header -->
+  <!-- Header -->
   <section style="padding:80px 0 60px;border-bottom:1px solid var(--outline);">
     <div class="container">
-      <div class="label reveal" style="margin-bottom:24px;">Projects</div>
+      <div class="label reveal" style="margin-bottom:24px;">Selected Works</div>
       <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;">
-        <h1 class="headline-xl reveal reveal-delay-1">Gallery of Work.</h1>
-        <p class="body-lg reveal reveal-delay-2" style="max-width:400px;">A curated selection of projects spanning brand identity, editorial design, web experiences, and motion graphics.</p>
+        <h1 class="headline-xl reveal reveal-delay-1">Projects Shipped.</h1>
+        <p class="body-lg reveal reveal-delay-2" style="max-width:400px;">5 production-grade projects — full-stack apps, real-time systems, government portals, and AI/ML tools.</p>
       </div>
     </div>
   </section>
 
   <!-- Filter Bar -->
-  <section style="padding:32px 0;border-bottom:1px solid var(--outline);position:sticky;top:72px;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);z-index:10;">
+  <section style="padding:24px 0;border-bottom:1px solid var(--outline);position:sticky;top:72px;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);z-index:10;">
     <div class="container">
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-        <span class="mono" style="color:var(--on-surface-dim);margin-right:8px;">Filter:</span>
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="Brand Identity">Branding</button>
-        <button class="filter-btn" data-filter="Editorial Design">Editorial</button>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span class="mono" style="color:var(--on-surface-dim);margin-right:4px;font-size:10px;">FILTER:</span>
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="Web Development">Web Dev</button>
+        <button class="filter-btn" data-filter="Machine Learning">ML / AI</button>
         <button class="filter-btn" data-filter="Interface Design">Interface</button>
-        <button class="filter-btn" data-filter="Motion Graphics">Motion</button>
-        <button class="filter-btn" data-filter="Still Life">Photography</button>
-        <span style="margin-left:auto;" class="mono" id="project-count" style="color:var(--on-surface-dim);">— projects</span>
+        <span style="margin-left:auto;" class="mono" id="project-count" style="color:var(--on-surface-dim);font-size:10px;"></span>
       </div>
     </div>
   </section>
@@ -69,25 +70,125 @@
   <section class="section">
     <div class="container">
       <div id="gallery-grid" class="masonry">
-        <!-- Skeleton loaders -->
-        <div class="skeleton masonry-item" style="height:320px;"></div>
-        <div class="skeleton masonry-item" style="height:480px;"></div>
-        <div class="skeleton masonry-item" style="height:380px;"></div>
-        <div class="skeleton masonry-item" style="height:500px;"></div>
-        <div class="skeleton masonry-item" style="height:300px;"></div>
-        <div class="skeleton masonry-item" style="height:420px;"></div>
+        <div class="skeleton masonry-item" style="height:300px;border-radius:4px;"></div>
+        <div class="skeleton masonry-item" style="height:420px;border-radius:4px;"></div>
+        <div class="skeleton masonry-item" style="height:360px;border-radius:4px;"></div>
+        <div class="skeleton masonry-item" style="height:480px;border-radius:4px;"></div>
+        <div class="skeleton masonry-item" style="height:320px;border-radius:4px;"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- Detailed Project Cards -->
+  <section style="padding:0 0 80px;background:var(--surface);border-top:1px solid var(--outline);">
+    <div class="container" style="padding-top:60px;">
+      <div class="label reveal" style="margin-bottom:24px;">Project Details</div>
+      <h2 class="headline-lg reveal reveal-delay-1" style="margin-bottom:48px;">Each Build in Depth.</h2>
+
+      <!-- E-Nagarpalika -->
+      <div class="project-detail-card reveal">
+        <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--primary);padding:3px 10px;border-radius:999px;">Live / Production</span>
+              <span style="font-size:9px;color:var(--on-surface-dim);">IWM/25/06-213</span>
+            </div>
+            <div style="font-family:var(--font-serif);font-size:24px;font-weight:700;margin-bottom:4px;">E-Nagarpalika — Government Municipal Portal</div>
+            <div style="font-size:13px;color:var(--on-surface-dim);">Indore Municipal Corporation · June–July 2025</div>
+          </div>
+          <a href="https://github.com/Akshatj0707" target="_blank" class="btn-ghost">GitHub <span class="material-symbols-outlined" style="font-size:14px;">north_east</span></a>
+        </div>
+        <p style="font-size:14px;line-height:1.75;color:var(--on-surface-dim);margin-bottom:20px;">Engineered a production-deployed full-stack municipal portal with Next.js SSR frontend, Node.js/Express.js backend, JWT-secured RBAC, and multi-role permission management — actively serving Indore Municipal Corporation. Supported GraphQL API integration and optimized MongoDB schemas with strategic indexing.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-chip">React.js</span><span class="tech-chip">Next.js</span><span class="tech-chip">Node.js</span>
+          <span class="tech-chip">Express.js</span><span class="tech-chip">MongoDB</span><span class="tech-chip">JWT</span>
+          <span class="tech-chip">RBAC</span><span class="tech-chip">GraphQL</span><span class="tech-chip">RESTful API</span>
+        </div>
+      </div>
+
+      <!-- Uber Clone -->
+      <div class="project-detail-card reveal">
+        <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+          <div>
+            <div style="margin-bottom:8px;"><span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);background:rgba(182,196,255,.1);padding:3px 10px;border-radius:999px;border:1px solid rgba(182,196,255,.3);">Full-Stack</span></div>
+            <div style="font-family:var(--font-serif);font-size:24px;font-weight:700;margin-bottom:4px;">Uber Clone — Full-Stack Ride-Hailing Website</div>
+            <div style="font-size:13px;color:var(--on-surface-dim);">Personal Project · 2025</div>
+          </div>
+          <a href="https://github.com/Akshatj0707" target="_blank" class="btn-ghost">GitHub <span class="material-symbols-outlined" style="font-size:14px;">north_east</span></a>
+        </div>
+        <p style="font-size:14px;line-height:1.75;color:var(--on-surface-dim);margin-bottom:20px;">Built a fully functional Uber-inspired ride-hailing website with real-time location tracking, ride booking, and rider-driver matching via Socket.io, with Google Maps API for live route rendering and fare estimation. Implemented JWT-secured authentication with role-based access control for riders and drivers.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-chip">React.js</span><span class="tech-chip">Node.js</span><span class="tech-chip">Express.js</span>
+          <span class="tech-chip">MongoDB</span><span class="tech-chip">Socket.io</span><span class="tech-chip">Google Maps API</span>
+          <span class="tech-chip">JWT</span><span class="tech-chip">RESTful API</span>
+        </div>
+      </div>
+
+      <!-- Analytics Dashboard -->
+      <div class="project-detail-card reveal">
+        <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+          <div>
+            <div style="margin-bottom:8px;"><span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);background:rgba(182,196,255,.1);padding:3px 10px;border-radius:999px;border:1px solid rgba(182,196,255,.3);">Analytics</span></div>
+            <div style="font-family:var(--font-serif);font-size:24px;font-weight:700;margin-bottom:4px;">Productivity Analytics Dashboard</div>
+            <div style="font-size:13px;color:var(--on-surface-dim);">Personal Project · 2025</div>
+          </div>
+          <a href="https://github.com/Akshatj0707" target="_blank" class="btn-ghost">GitHub <span class="material-symbols-outlined" style="font-size:14px;">north_east</span></a>
+        </div>
+        <p style="font-size:14px;line-height:1.75;color:var(--on-surface-dim);margin-bottom:20px;">Developed a full-stack analytics platform with real-time Chart.js visualizations, Node.js/Express.js RESTful API backend, Redux state management, and persistent MongoDB storage for cross-module data tracking.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-chip">React.js</span><span class="tech-chip">Next.js</span><span class="tech-chip">Node.js</span>
+          <span class="tech-chip">Express.js</span><span class="tech-chip">MongoDB</span><span class="tech-chip">Chart.js</span>
+          <span class="tech-chip">Redux</span><span class="tech-chip">RESTful API</span>
+        </div>
+      </div>
+
+      <!-- E-Nagarpalika Auth Portal -->
+      <div class="project-detail-card reveal">
+        <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+          <div>
+            <div style="margin-bottom:8px;"><span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:#4ade80;padding:3px 10px;border-radius:999px;">Government</span></div>
+            <div style="font-family:var(--font-serif);font-size:24px;font-weight:700;margin-bottom:4px;">E-Nagarpalika: User ID Creation & Authorization Portal</div>
+            <div style="font-size:13px;color:var(--on-surface-dim);">Nagar Nigam IT Department · 2025</div>
+          </div>
+          <a href="https://github.com/Akshatj0707" target="_blank" class="btn-ghost">GitHub <span class="material-symbols-outlined" style="font-size:14px;">north_east</span></a>
+        </div>
+        <p style="font-size:14px;line-height:1.75;color:var(--on-surface-dim);margin-bottom:20px;">Architected a full-stack government web application for the Nagar Nigam IT Department to manage user ID creation, authorization change requests, and multi-level approval workflows (IT Assistant → IT Officer → IT Head). Integrated Nodemailer for automated email notifications and built public ticket/email-based status tracking requiring no login.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-chip">React 19</span><span class="tech-chip">Vite</span><span class="tech-chip">Tailwind CSS</span>
+          <span class="tech-chip">Node.js</span><span class="tech-chip">Express.js</span><span class="tech-chip">MongoDB</span>
+          <span class="tech-chip">Mongoose</span><span class="tech-chip">JWT</span><span class="tech-chip">Nodemailer</span>
+          <span class="tech-chip">Helmet</span><span class="tech-chip">CORS</span>
+        </div>
+      </div>
+
+      <!-- Face Recognition -->
+      <div class="project-detail-card reveal">
+        <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:16px;margin-bottom:16px;">
+          <div>
+            <div style="margin-bottom:8px;"><span style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:#7C3AED;padding:3px 10px;border-radius:999px;">AI / ML</span></div>
+            <div style="font-family:var(--font-serif);font-size:24px;font-weight:700;margin-bottom:4px;">Face Recognition Attendance System</div>
+            <div style="font-size:13px;color:var(--on-surface-dim);">Institutional Project · 2024</div>
+          </div>
+          <a href="https://github.com/Akshatj0707" target="_blank" class="btn-ghost">GitHub <span class="material-symbols-outlined" style="font-size:14px;">north_east</span></a>
+        </div>
+        <p style="font-size:14px;line-height:1.75;color:var(--on-surface-dim);margin-bottom:20px;">Developed an automated attendance system using Python and OpenCV with real-time facial detection and recognition, eliminating manual tracking and demonstrating applied computer vision in an institutional setting.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tech-chip">Python</span><span class="tech-chip">OpenCV</span><span class="tech-chip">face_recognition</span>
+          <span class="tech-chip">Machine Learning</span><span class="tech-chip">Computer Vision</span>
+        </div>
+      </div>
+
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <div class="footer-inner">
-    <div><div class="logo" style="margin-bottom:16px;">Akshat_Jain</div><p class="body-md" style="max-width:240px;margin-top:12px;">Crafting digital precision through editorial excellence. Indore, MP.</p></div>
+    <div><div class="logo" style="margin-bottom:16px;">Akshat_Jain</div><p class="body-md" style="max-width:240px;margin-top:12px;">Full-Stack Developer. Indore, MP.</p></div>
     <div><div class="footer-heading">Navigation</div><div class="footer-links"><a href="/" class="footer-link">Home</a><a href="/pages/gallery.html" class="footer-link">Projects</a><a href="/pages/about.html" class="footer-link">About</a><a href="/pages/contact.html" class="footer-link">Contact</a></div></div>
-    <div><div class="footer-heading">Connect</div><div class="footer-links"><a href="https://github.com/Akshatj0707" target="_blank" class="footer-link">GitHub</a><a href="https://linkedin.com/in/akshat-jain" target="_blank" class="footer-link">LinkedIn</a><a href="mailto:akshatjain9804@gmail.com" class="footer-link">Email</a></div></div>
+    <div><div class="footer-heading">Connect</div><div class="footer-links"><a href="https://github.com/Akshatj0707" target="_blank" class="footer-link">GitHub</a><a href="https://linkedin.com/in/akshat-jain" target="_blank" class="footer-link">LinkedIn</a><a href="mailto:akshatjain9804@gmail.com" class="footer-link">akshatjain9804@gmail.com</a></div></div>
   </div>
-  <div class="footer-bottom"><span>© 2024 AKSHAT JAIN</span><span class="mono" style="color:var(--primary);">INDORE, MP</span></div>
+  <div class="footer-bottom"><span>© 2025 AKSHAT JAIN</span><span class="mono" style="color:var(--primary);">INDORE, MP · INDIA</span></div>
 </footer>
 
 <script>
@@ -100,35 +201,29 @@ async function loadGallery() {
     allProjects = data.data;
     renderGallery(allProjects);
   } catch(e) {
-    document.getElementById('gallery-grid').innerHTML = '<p style="color:var(--on-surface-dim);">Failed to load projects.</p>';
+    document.getElementById('gallery-grid').innerHTML = '<p style="color:var(--on-surface-dim);padding:40px 0;">Projects loading...</p>';
   }
 }
 
 function renderGallery(projects) {
   const grid = document.getElementById('gallery-grid');
   const countEl = document.getElementById('project-count');
-  countEl.textContent = projects.length + ' projects';
-
-  const heights = [320,400,480,360,420,500,300,460];
+  if(countEl) countEl.textContent = projects.length + ' PROJECTS';
+  const heights = [320,420,360,480,300,440,380];
   grid.innerHTML = projects.map((p, i) => `
-    <a href="#" class="project-card masonry-item" style="height:${heights[i%heights.length]}px;" data-category="${p.category}">
+    <div class="project-card masonry-item" style="height:${heights[i%heights.length]}px;" data-category="${p.category}">
       <img src="${p.coverImage}" alt="${p.title}" loading="lazy" style="height:100%;"/>
       <div class="project-card-overlay">
-        <div class="project-card-category">${p.category}</div>
+        <div class="project-card-category">${p.category} · ${p.year}</div>
         <div class="project-card-title">${p.title}</div>
-        <div style="margin-top:8px;font-size:12px;color:var(--on-surface-dim);">${p.year}</div>
       </div>
-    </a>
-  `).join('');
-
-  // Stagger animation
+    </div>`).join('');
   grid.querySelectorAll('.project-card').forEach((el,i) => {
-    el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
-    setTimeout(() => { el.style.transition = 'opacity .5s,transform .5s var(--ease-spring)'; el.style.opacity='1'; el.style.transform='none'; }, i*60);
+    el.style.opacity='0'; el.style.transform='translateY(20px)';
+    setTimeout(()=>{ el.style.transition='opacity .5s,transform .5s var(--ease-spring)'; el.style.opacity='1'; el.style.transform='none'; }, i*60);
   });
 }
 
-// Filter logic
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
