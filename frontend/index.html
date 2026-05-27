@@ -100,44 +100,20 @@
     <div class="container">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;flex-wrap:wrap;gap:24px;">
         <div>
-          <div class="label reveal" style="margin-bottom:20px;">Featured Work</div>
-          <h2 class="headline-xl reveal reveal-delay-1">Projects Shipped.</h2>
+          <div class="label reveal" style="margin-bottom:20px;">All Projects</div>
+          <h2 class="headline-xl reveal reveal-delay-1">All Projects.</h2>
         </div>
         <div class="mono reveal" style="color:var(--on-surface-dim);text-align:right;text-transform:uppercase;line-height:1.7;font-size:10px;">[ PRODUCTION_GRADE ]<br/>FULL-STACK · REAL-TIME · AI-POWERED</div>
       </div>
-      <div id="home-projects-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;min-height:560px;">
+      <div id="home-projects-grid" style="display:grid;grid-template-columns:repeat(12,1fr);gap:16px;min-height:580px;">
         <div class="skeleton" style="grid-column:span 7;aspect-ratio:16/9;border-radius:4px;"></div>
         <div class="skeleton" style="grid-column:span 5;aspect-ratio:1;border-radius:4px;"></div>
-        <div class="skeleton" style="grid-column:span 5;aspect-ratio:4/3;border-radius:4px;"></div>
-        <div class="skeleton" style="grid-column:span 7;aspect-ratio:16/9;border-radius:4px;"></div>
+        <div class="skeleton" style="grid-column:span 4;aspect-ratio:4/3;border-radius:4px;"></div>
+        <div class="skeleton" style="grid-column:span 4;aspect-ratio:4/3;border-radius:4px;"></div>
+        <div class="skeleton" style="grid-column:span 4;aspect-ratio:4/3;border-radius:4px;"></div>
       </div>
       <div style="text-align:center;margin-top:56px;">
-        <a href="/pages/gallery.html" class="btn-outline">All Projects <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SKILLS STRIP ═══ -->
-  <section style="background:var(--surface);border-top:1px solid var(--outline);border-bottom:1px solid var(--outline);padding:64px 0;">
-    <div class="container">
-      <div class="label reveal" style="margin-bottom:32px;justify-content:center;">Core Tech Stack</div>
-      <div class="stagger-parent" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-        <span class="stagger-child" style="border:1px solid var(--primary);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;color:var(--primary);">React.js</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Next.js</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Node.js</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Express.js</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">TypeScript</span>
-        <span class="stagger-child" style="border:1px solid var(--primary);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;color:var(--primary);">MongoDB</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Socket.io</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">JWT / RBAC</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">GraphQL</span>
-        <span class="stagger-child" style="border:1px solid var(--primary);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;color:var(--primary);">Generative AI</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Python</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">OpenCV / ML</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Docker</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Tailwind CSS</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Redux</span>
-        <span class="stagger-child" style="border:1px solid var(--outline);padding:10px 20px;border-radius:999px;font-size:12px;font-weight:600;">Prisma ORM</span>
+        <a href="/pages/gallery.html" class="btn-outline">View Detailed Gallery <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span></a>
       </div>
     </div>
   </section>
@@ -188,12 +164,28 @@
 <script>
 async function loadHomeProjects() {
   try {
-    const data = await api.get('/projects?featured=true&limit=4');
+    const data = await api.get('/projects?limit=50');
     const grid = document.getElementById('home-projects-grid');
     const projects = data.data;
     if (!projects || !projects.length) return;
-    const layouts = ['grid-column:span 7;aspect-ratio:16/9;','grid-column:span 5;aspect-ratio:1;','grid-column:span 5;aspect-ratio:4/3;','grid-column:span 7;aspect-ratio:16/9;'];
-    grid.innerHTML = projects.map((p, i) => `<a href="/pages/gallery.html" class="project-card" style="${layouts[i]||'grid-column:span 6;'}"><img src="${p.coverImage}" alt="${p.title}" loading="lazy"/><div class="project-card-overlay"><div class="project-card-category">${p.category}</div><div class="project-card-title">${p.title}</div></div></a>`).join('');
+    // Bento layout for 5 projects
+    const layouts = [
+      'grid-column:span 7;height:260px;',
+      'grid-column:span 5;height:260px;',
+      'grid-column:span 4;height:240px;',
+      'grid-column:span 4;height:240px;',
+      'grid-column:span 4;height:240px;'
+    ];
+    grid.innerHTML = projects.map((p, i) => {
+      const style = layouts[i] || 'grid-column:span 4;height:240px;';
+      return `<a href="/pages/gallery.html" class="project-card" style="${style}">
+        <img src="${p.coverImage}" alt="${p.title}" loading="lazy" style="height:100%;"/>
+        <div class="project-card-overlay">
+          <div class="project-card-category">${p.category} · ${p.year}</div>
+          <div class="project-card-title">${p.title}</div>
+        </div>
+      </a>`;
+    }).join('');
     grid.querySelectorAll('.project-card').forEach((el,i) => { el.style.opacity='0'; el.style.transform='translateY(20px)'; setTimeout(() => { el.style.transition='opacity .5s,transform .5s var(--ease-spring)'; el.style.opacity='1'; el.style.transform='none'; }, i*80); });
   } catch(e) { console.error('Projects load error:', e); }
 }
